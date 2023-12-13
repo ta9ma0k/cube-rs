@@ -79,6 +79,63 @@ impl Cube {
     pub fn left(self) -> Self {
         self.right_prime()
     }
+
+    pub fn left2(self) -> Self {
+        self.right2()
+    }
+
+    pub fn left_prime(self) -> Self {
+        self.right()
+    }
+
+    pub fn down(self) -> Self {
+        let down_move = Move::new([0, 1, 2, 3, 7, 4, 5, 6], [0, 0, 0, 0, 0, 0, 0, 0]);
+        self.apply(&down_move)
+    }
+
+    pub fn down2(self) -> Self {
+        self.down().down()
+    }
+
+    pub fn down_prime(self) -> Self {
+        self.down().down().down()
+    }
+
+    pub fn up(self) -> Self {
+        self.down()
+    }
+
+    pub fn up2(self) -> Self {
+        self.down2()
+    }
+
+    pub fn up_prime(self) -> Self {
+        self.down_prime()
+    }
+
+    pub fn back(self) -> Self {
+        todo!()
+    }
+
+    pub fn back2(self) -> Self {
+        self.back().back()
+    }
+
+    pub fn back_prime(self) -> Self {
+        self.back().back().back()
+    }
+
+    pub fn front(self) -> Self {
+        self.back()
+    }
+
+    pub fn front2(self) -> Self {
+        self.back2()
+    }
+
+    pub fn front_prime(self) -> Self {
+        self.back_prime()
+    }
 }
 
 #[cfg(test)]
@@ -131,5 +188,61 @@ mod tests_2x2 {
         let cube = Cube::new(SERIAL_CORNER_PARTS, [0; 8]);
         let left_move_cube = Cube::new([0, 2, 6, 3, 4, 1, 5, 7], [0, 2, 1, 0, 0, 1, 2, 0]);
         assert_eq!(cube.left(), left_move_cube);
+    }
+
+    #[test]
+    fn left2_move_should_return_left2_move_cube() {
+        let cube = Cube::new(SERIAL_CORNER_PARTS, [0; 8]);
+        let left2_move_cube = Cube::new([0, 6, 5, 3, 4, 2, 1, 7], [0; 8]);
+        assert_eq!(cube.left2(), left2_move_cube);
+    }
+
+    #[test]
+    fn left_prime_move_should_return_left_prime_move_cube() {
+        let cube = Cube::new(SERIAL_CORNER_PARTS, [0; 8]);
+        let left_prime_move_cube = Cube::new([0, 5, 1, 3, 4, 6, 2, 7], [0, 2, 1, 0, 0, 1, 2, 0]);
+        assert_eq!(cube.left_prime(), left_prime_move_cube);
+    }
+
+    #[test]
+    fn down_move_should_return_down_move_cube() {
+        let cube = Cube::new(SERIAL_CORNER_PARTS, [0; 8]);
+        let down_move_cube = Cube::new([0, 1, 2, 3, 7, 4, 5, 6], [0; 8]);
+        assert_eq!(cube.down(), down_move_cube);
+    }
+
+    #[test]
+    fn down2_move_should_return_down2_move_cube() {
+        let cube = Cube::new(SERIAL_CORNER_PARTS, [0; 8]);
+        let down2_move_cube = Cube::new([0, 1, 2, 3, 6, 7, 4, 5], [0; 8]);
+        assert_eq!(cube.down2(), down2_move_cube);
+    }
+
+    #[test]
+    fn down_prime_move_should_return_down_prime_move_cube() {
+        let cube = Cube::new(SERIAL_CORNER_PARTS, [0; 8]);
+        let down_prime_move_cube = Cube::new([0, 1, 2, 3, 5, 6, 7, 4], [0; 8]);
+        assert_eq!(cube.down_prime(), down_prime_move_cube);
+    }
+
+    #[test]
+    fn up_move_should_return_up_move_cube() {
+        let cube = Cube::new(SERIAL_CORNER_PARTS, [0; 8]);
+        let up_move_cube = Cube::new([0, 1, 2, 3, 7, 4, 5, 6], [0; 8]);
+        assert_eq!(cube.up(), up_move_cube);
+    }
+
+    #[test]
+    fn up2_move_should_return_up2_move_cube() {
+        let cube = Cube::new(SERIAL_CORNER_PARTS, [0; 8]);
+        let up2_move_cube = Cube::new([0, 1, 2, 3, 6, 7, 4, 5], [0; 8]);
+        assert_eq!(cube.up2(), up2_move_cube);
+    }
+
+    #[test]
+    fn up_prime_move_should_return_up_prime_move_cube() {
+        let cube = Cube::new(SERIAL_CORNER_PARTS, [0; 8]);
+        let up_prime_move_cube = Cube::new([0, 1, 2, 3, 5, 6, 7, 4], [0; 8]);
+        assert_eq!(cube.up_prime(), up_prime_move_cube);
     }
 }
